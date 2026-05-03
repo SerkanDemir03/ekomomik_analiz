@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmet Maliyet Analizi | Karar Destek Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="icon">📈</span>
+                <h1>Hizmet Maliyet Analizi</h1>
+            </div>
+            <p class="subtitle">Bilgisayar Mühendisliği ve Yazılım için Ekonomik Karar Destek Sistemi</p>
+        </header>
+
+        <main>
+            <section class="input-grid">
+                <!-- Subscription Section -->
+                <div class="card sub-card">
+                    <h2>Abonelik Hizmeti (SaaS)</h2>
+                    <div class="form-group">
+                        <label for="sub-cost">Aylık Abonelik Ücreti ($)</label>
+                        <input type="number" id="sub-cost" value="1500" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="sub-overhead">Yıllık Ek Giderler ($)</label>
+                        <input type="number" id="sub-overhead" value="500" step="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="sub-perf">Performans Skoru (0-100)</label>
+                        <input type="range" id="sub-perf" min="0" max="100" value="65">
+                        <span id="sub-perf-val">65</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Yapabileceği İşler</label>
+                        <div class="tag-input" id="sub-tasks">
+                            <span class="tag">Bug Fix</span>
+                            <span class="tag">Basic UI</span>
+                            <input type="text" placeholder="İş ekle...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employee Section -->
+                <div class="card emp-card">
+                    <h2>Yeni Çalışan (Full-Time)</h2>
+                    <div class="form-group">
+                        <label for="emp-salary">Brüt Aylık Maaş ($)</label>
+                        <input type="number" id="emp-salary" value="3000" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-benefits">Yan Haklar & Vergi ($)</label>
+                        <input type="number" id="emp-benefits" value="750" step="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-perf">Performans Skoru (0-100)</label>
+                        <input type="range" id="emp-perf" min="0" max="100" value="90">
+                        <span id="emp-perf-val">90</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Yapabileceği İşler</label>
+                        <div class="tag-input" id="emp-tasks">
+                            <span class="tag">System Design</span>
+                            <span class="tag">Backend Dev</span>
+                            <span class="tag">Team Lead</span>
+                            <input type="text" placeholder="İş ekle...">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="actions">
+                <button id="analyze-btn" class="primary-btn">Analiz Et ve Karşılaştır</button>
+            </div>
+
+            <section id="results" class="results-container hidden">
+                <div class="summary-grid">
+                    <div class="summary-card" id="recommendation-box">
+                        <h3>Öneri</h3>
+                        <p id="recommendation-text"></p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Maliyet/Performans Oranı</h3>
+                        <div class="comparison-bar">
+                            <div class="bar-fill sub-bar" id="sub-ratio-bar"></div>
+                            <div class="bar-fill emp-bar" id="emp-ratio-bar"></div>
+                        </div>
+                        <p class="small">Düşük olan daha verimlidir.</p>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>12 Aylık Kümülatif Maliyet Projeksiyonu</h3>
+                        <canvas id="costChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Yetenek Kapsama Karşılaştırması</h3>
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Hizmet Maliyet Analizi - Tüm Hakları Saklıdır</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
